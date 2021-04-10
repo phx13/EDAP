@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1>登录</h1>
+            <form class="row g-3" method="post">
+                {{ form.csrf_token() }}
+
+                <!--email-->
+                <div class="col-12">
+                    {{ form.email.label(for="loginEmail", class="form-label") }}
+                    {{ form.email(id="loginEmail", class="form-control", placeholder="请输入邮箱！") }}
+                    <span id="loginEmailVerification"></span>
+                </div>
+
+                <!--password-->
+                <div class="col-sm-8">
+                    {{ form.password.label(for="loginPassword", class="form-label") }}
+                    {{ form.password(id="loginPassword", class="form-control", placeholder="请输入密码！") }}
+                    <span id="loginPasswordVerification"></span>
+                </div>
+                <div class="col-sm-4">
+                    <label for="loginPasswordBtn" class="form-label">忘记密码</label>
+                    <a class="btn btn-outline-primary" style="width: 100%;" onclick="sendForgetPasswordEmail(this)" id="loginPasswordBtn"><i class="fa fa-key"
+                                                                                                                                             aria-hidden="true"></i> 找回密码 </a>
+                </div>
+
+                <!--image captcha-->
+                <div class="col-sm-8">
+                    {{ form.login_captcha.label(for="loginCaptchaCode", class="form-label") }}
+                    {{ form.login_captcha(id="loginCaptchaCode", class="form-control", placeholder="请输入图片验证码！") }}
+                </div>
+                <div class="col-sm-4">
+                    <label for="loginCaptcha" class="form-label">图片验证码</label>
+                    <img id="loginCaptcha" style="cursor:pointer; height: 38px; width: 100%;" onclick="refreshImageCaptcha()">
+                </div>
+
+                <!--submit-->
+                <div class="col-12">
+                    {{ form.submit(class="btn btn-outline-success", style="width: 100%;") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript" src="/js/custom_js/login.js"></script>
+{% endblock %}

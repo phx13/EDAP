@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+
+    <!-- Mobile Metas -->
+    <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+
+    <!-- Site Metas -->
+    <title>EDAP</title>
+
+    <!-- Site Icons -->
+    <link href="/images/icons/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+    <!-- Import CSS -->
+    <link href="/css/import_css/normalize.css" rel="stylesheet" type="text/css">
+    <link href="/css/import_css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/import_css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Site CSS -->
+    <link href="/css/custom_css/style.css" rel="stylesheet" type="text/css">
+    {% block heads %}
+    {% endblock %}
+</head>
+
+<body>
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/icons/favicon.ico" width="40px" height="40px" class="d-inline-block align-text-top"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span> 菜单
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            主页
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            用户管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            设备管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout/">
+                            注销
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login/">
+                            登录
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register/">
+                            注册
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer>
+    <div class="container" style="font-style: italic">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                设备数据分析平台
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script type="text/javascript" src="/js/import_js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/js/import_js/bootstrap.bundle.min.js"></script>
+{% block scripts %}
+{% endblock %}
+</body>
+</html>
