@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block heads %}
+    {{ super() }}
+    <link href="/css/import_css/ol.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <hr>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div id="map2d" class="projectInfoMap"></div>
+            <div style="display: none;">
+                <div id="popup"></div>
+            </div>
+        </div>
+        <div class="col">
+            <div>
+                <a href="/" class="btn btn-outline-success" style="float: right;">返回主页</a>
+            </div>
+            <div id="prjInfo" class="projectInfo">
+                <div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>项目编号：</b>{{ project.prj_id }}</li>
+                        <li class="list-group-item"><b>项目名称：</b>{{ project.prj_name }}</li>
+                        <li class="list-group-item"><b>项目说明：</b>{{ project.description }}</li>
+                        <li class="list-group-item"><b>项目时间：</b>{{ project.time }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="projectInfo">
+                <div class="row">
+                    <div class="col">
+                        <div id="leftChart" class="projectChartStyle"></div>
+                    </div>
+                    <div class="col">
+                        <div id="rightChart" class="projectChartStyle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script type="text/javascript" src="/js/import_js/ol.js"></script>
+    <script type="text/javascript" src="/js/import_js/echarts.js"></script>
+    <script type="text/javascript" src="/js/custom_js/map.js"></script>
+    <script type="text/javascript" src="/js/custom_js/project.js"></script>
+    <script type="text/javascript" src="/js/custom_js/chart.js"></script>
+{% endblock %}

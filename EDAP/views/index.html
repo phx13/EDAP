@@ -1,17 +1,36 @@
 {% extends 'base.html' %}
 {% block heads %}
-{{ super() }}
-<link href="/css/import_css/ol.css" rel="stylesheet" type="text/css">
+    {{ super() }}
+    <link href="/css/import_css/ol.css" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block content %}
-<div id="indexMap" class="map"></div>
-<div id="leftChart" class="leftChartStyle"></div>
+    <hr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div id="topLeftChart" class="indexChartStyle"></div>
+                <div id="bottomLeftChart" class="indexChartStyle"></div>
+            </div>
+            <div class="col-8">
+                <div id="map2d" class="indexMap"></div>
+                <div style="display: none;">
+                    <div id="popup"></div>
+                </div>
+            </div>
+            <div class="col">
+                <div id="topRightChart" class="indexChartStyle"></div>
+                <div id="bottomRightChart" class="indexChartStyle"></div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block scripts %}
-{{ super() }}
-<script type="text/javascript" src="/js/import_js/ol.js"></script>
-<script type="text/javascript" src="/js/import_js/echarts.js"></script>
-<script type="text/javascript" src="/js/custom_js/index.js"></script>
+    {{ super() }}
+    <script type="text/javascript" src="/js/import_js/ol.js"></script>
+    <script type="text/javascript" src="/js/import_js/echarts.js"></script>
+    <script type="text/javascript" src="/js/custom_js/map.js"></script>
+    <script type="text/javascript" src="/js/custom_js/index.js"></script>
+    <script type="text/javascript" src="/js/custom_js/chart.js"></script>
 {% endblock %}

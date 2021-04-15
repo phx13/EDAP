@@ -42,6 +42,8 @@ def before_request():
 
 from EDAP.controllers.index_controller import index_bp
 from EDAP.controllers.account_controller import account_bp
+from EDAP.controllers.project_controller import project_bp
 
 app.register_blueprint(index_bp)
 app.register_blueprint(account_bp)
+app.register_blueprint(project_bp)

@@ -1,10 +1,30 @@
-<!--  -->
-.map {
-    height: 850px;
+<!--
+-->
+.indexMap {
+    height: 800px;
     width: 100%;
 }
 
-.leftChartStyle{
+.indexChartStyle {
+    height: 50%;
+    width: 100%;
+}
+
+.popover-body {
+    padding: 0;
+    width: 300px;
+}
+
+.projectInfoMap {
+    height: 800px;
+}
+
+.projectInfo {
     height: 400px;
-    width: 400px;
+    width: 100%;
+}
+
+.projectChartStyle {
+    height: 400px;
+    width: 90%;
 }

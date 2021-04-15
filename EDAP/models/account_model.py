@@ -1,7 +1,8 @@
 from flask_login import UserMixin
 from sqlalchemy import MetaData, Table
+from sqlalchemy.exc import SQLAlchemyError
 
-from EDAP import db, login_manager
+from EDAP import db
 
 
 class AccountModel(db.Model, UserMixin):
@@ -21,29 +22,43 @@ class AccountModel(db.Model, UserMixin):
 
     @staticmethod
     def search_all():
-        return db.session.query(AccountModel).all()
+        try:
+            return db.session.query(AccountModel).all()
+        except SQLAlchemyError:
+            return 'server error'
 
     @staticmethod
     def search_account_by_id(id):
-        return db.session.query(AccountModel).get(id)
+        try:
+            return db.session.query(AccountModel).get(id)
+        except SQLAlchemyError:
+            return 'server error'
 
     @staticmethod
     def search_account_by_email(email):
-        return db.session.query(AccountModel).filter_by(email=email).first()
+        try:
+            return db.session.query(AccountModel).filter_by(email=email).first()
+        except SQLAlchemyError:
+            return 'server error'
 
     @staticmethod
     def create_account(username, email, password, role):
-        db.session.add(AccountModel(username=username, email=email, password=password, role=role))
-        db.session.commit()
+        try:
+            db.session.add(AccountModel(username=username, email=email, password=password, role=role))
+            db.session.commit()
+        except SQLAlchemyError:
+            return 'server error'
 
-    @staticmethod
-    def update_account(email, username, password, role, avatar, profile, time):
-        db.session.query(AccountModel).get(email).update(
-            {'username': username, 'password': password, 'role': role, 'avatar': avatar, 'profile': profile, 'time': time})
-        db.session.commit()
+    def update_account(self, email, username, password, role, avatar, profile, time):
+        try:
+            self.search_account_by_email(email).update({'username': username, 'password': password, 'role': role, 'avatar': avatar, 'profile': profile, 'time': time})
+            db.session.commit()
+        except SQLAlchemyError:
+            return 'server error'
 
     def delete_account(self, email):
-        self.search_account_by_email(email).delete()
-        db.session.commit()
-
-
+        try:
+            self.search_account_by_email(email).delete()
+            db.session.commit()
+        except SQLAlchemyError:
+            return 'server error'
